@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Controller</title>
+    <link rel="stylesheet" href="css/design.css">  <!-- Link to the CSS file -->
+</head>
+<body>
+
+    <!-- Main Container (Flexbox layout) -->
+
+    
+<div class="container">
+    <!-- Add Logo Here -->
+    <div class="logo-container">
+        <img src="assets/Public Central Brand Assets/01_Seal/72ppi/CCSU_Seal_Blue.png" alt="Robot Controller Logo" class="logo">
+        <label class="robot-name">Central Robot Application</label>  <!-- Add the label here -->
+    </div>
+    
+    <!-- Main Content Area (flexbox layout for programming and simulation) -->
+    <div class="main-content">
+        <!-- Programming Window -->
+        <div id="programming-window" class="panel">
+            <h2>Programming Window</h2>
+            <div class="program" id="program">
+                <!-- Dropped commands will appear here -->
+            </div>
+        </div>
+    
+        <!-- Simulation View -->
+        <div id="simulation-view" class="panel">
+            <h2>Simulation</h2>
+            <div class="simulation">
+                <div class="robot"></div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+<div class="segmented-controls">
+    <input id="three-1" name="three" type="radio" checked>
+    <label for="three-1">Beginner</label>  
+    <input id="three-2" name="three" type="radio">
+    <label for="three-2">Intermediate</label> 
+    <input id="three-3" name="three" type="radio">
+    <label for="three-3">Advanced</label>
+</div>
+
+    <!-- Link to JavaScript -->
+    <script type="module" src="views/app.js"></script>  <!-- Manage the app logic -->
+    <script src="js/index.js"></script>  <!-- Add the interactivity with JS -->
+
+</body>
+</html>
