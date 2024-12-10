@@ -5,10 +5,35 @@
     box-sizing: border-box;
 }
 
+:root {
+    --background-color: #f4f4f7;
+    --text-color: #333;
+    --sidebar-background-color: #ffffff;
+    --command-background-color: #f0f0f5;
+    --command-hover-background-color: #ddd;
+    --command-active-background-color: #bbb;
+    --border-color: #ddd;
+    --logo-background-color: rgba(255, 255, 255, 0.1);
+    --logo-shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    --background-color: #1e1e1e;
+    --text-color: #f4f4f7;
+    --sidebar-background-color: #2c2c2c;
+    --command-background-color: #3a3a3a;
+    --command-hover-background-color: #555;
+    --command-active-background-color: #777;
+    --border-color: #444;
+    --logo-background-color: rgba(255, 255, 255, 0.1);
+    --logo-shadow-color: rgba(0, 0, 0, 0.5);
+}
+
 /* Body and Layout */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    background-color: #f4f4f7;
+    background-color: var(--background-color);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;  /* Stack everything vertically */
     height: 100vh;
@@ -29,18 +54,15 @@ body {
     display: flex;
     flex-direction: column;  /* Stack the sidebar on top of the content */
     height: 100vh;  /* Full height of the viewport */
-
-    background-color: #ffffff;
+    background-color: var(--sidebar-background-color);
     width: 100%;
-    display: flex;
-    flex-direction: column;
     overflow-y: auto; /* Make sidebar scrollable if content overflows */
 }
 
 /* Sidebar Header */
 .sidebar-header h2 {
     font-size: 18px;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 20px;
 }
 
@@ -53,7 +75,7 @@ body {
 .command {
     padding: 15px;
     margin: 10px 0;
-    background-color: #f0f0f5;
+    background-color: var(--command-background-color);
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
@@ -61,11 +83,11 @@ body {
 }
 
 .command:hover {
-    background-color: #ddd;
+    background-color: var(--command-hover-background-color);
 }
 
 .command:active {
-    background-color: #bbb;
+    background-color: var(--command-active-background-color);
 }
 
 /* Main Content Area (flexbox layout for Programming and Simulation) */
@@ -75,10 +97,11 @@ body {
     justify-content: space-between; /* Or use 'center' or 'flex-start' depending on your design */
     align-items: stretch; /* Stretch elements to avoid gaps */
 }
+
 /* Programming Window */
 #programming-window {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: var(--sidebar-background-color);
+    border: 1px solid var(--border-color);
     flex: 1; /* Make it take up more space than the simulation view */
     display: flex;
     flex-direction: column;  /* Stack contents inside the programming window */
@@ -91,8 +114,8 @@ body {
 
 /* Simulation View */
 #simulation-view {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: var(--sidebar-background-color);
+    border: 1px solid var(--border-color);
     flex: 1;  /* Take up less space compared to the programming window */
     height: 100%;  /* Fixed height for simulation */
     display: flex;
@@ -145,54 +168,22 @@ body {
     }
 }
 
-
-body {
-    padding: 2rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    text-align: center;
-  }
-
-section {
-    margin: 0 auto;
-    max-width: 700px;
-    min-width: 380px;
-    width: 50vw;
-  }
-
-  h2 {
-    font-size: 0.625rem;
-    text-transform: uppercase;
-    margin: 4rem 0 2rem 0;
-    font-weight: 600;
-    color: rgba(0,0,0,0.5)
-  }
-  
-
-/* 
- * SEGMENTED CONTROLS LAYOUT
- */ 
-/* Updated Segmented Controls Layout */
-
-/*
- * Container
- */
- .segmented-controls {
+/* Segmented Controls */
+.segmented-controls {
     display: flex;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    transition: all .3s ease;
-    width: 400px;
-    height: 3rem; /* Increased height for larger segmented controls */
-    border-radius: 1.5rem; /* Rounded corners */
-    background: rgba(255, 255, 255, 0.1); /* Frosted glass effect */
-    backdrop-filter: blur(10px); /* Apply blur for glass effect */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--sidebar-background-color);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/*
- * Visually hidden radiobuttons
- */
+/* Visually hidden radiobuttons */
 .segmented-controls input {
     position: absolute !important;
     height: 1px;
@@ -203,9 +194,7 @@ section {
     white-space: nowrap; /* added line */
 }
 
-/*
- * Labels need to be the same size
- */
+/* Labels need to be the same size */
 .segmented-controls label {
     grid-row: 1;
     display: flex;
@@ -224,16 +213,12 @@ section {
     padding: 0 1rem; /* Spacing between labels */
 }
 
-/* Adjust z-index of last label since that contains 
- * the paddle that needs to go beneath all other labels 
- */
+/* Adjust z-index of last label since that contains the paddle that needs to go beneath all other labels */
 .segmented-controls label:last-of-type {
     z-index: 1;
 }
 
-/*
- * Paddle 
- */
+/* Paddle */
 .segmented-controls label:last-of-type::after {
     content: "";
     position: absolute;
@@ -261,17 +246,12 @@ section {
     transform: translateX(0%);
 }
 
-/*
- * iOS 18 Style
- * Frosted glass effect and larger paddles
- */
+/* iOS 18 Style Frosted glass effect and larger paddles */
 body {
-    background: #f1f2f6; /* Lighter background to complement glass look */
+    background: var(--background-color); /* Lighter background to complement glass look */
 }
 
-/*
- * Adjusting divider visibility
- */
+/* Adjusting divider visibility */
 .segmented-controls label:not(:first-of-type)::before {
     content: "";
     position: absolute;
